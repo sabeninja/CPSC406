@@ -1,23 +1,20 @@
 
-# a class for DFAs
-# modify as needed
 class DFA :
 
     # init the DFA
     def __init__(self, Q, Sigma, delta, q0, F) : 
-        self.Q = Q # set of states
-        self.Sigma = Sigma # set of symbols
-        self.delta = delta # transition function
+        self.Q = Q 
+        self.Sigma = Sigma 
+        self.delta = delta 
         self.q0 = q0 # initial state
         self.F = F # final states
    
-    # print the data of the DFA
+    # print 
     def __repr__(self) :
         return f"DFA({self.Q},\n\t{self.Sigma},\n\t{self.delta},\n\t{self.q0},\n\t{self.F})"
 
     # run the DFA on the word w
-    # return if the word is accepted or not
-    # modify as needed
+
     def run(self, w):
         current_state = self.q0
         for symbol in w:
@@ -31,6 +28,14 @@ class DFA :
     def refuse(self):
         new_F = self.Q - self.F
         return DFA(self.Q, self.Sigma, self.delta, self.q0, new_F)
+    
+    def to_NFA(self):
+        from NFA import NFA
+        nfa_delta = {}
+        for (state, symbol), dest in self.delta.items():
+            nfa_delta[(state, symbol)] = {dest}
+        return NFA(self.Q, self.Sigma, nfa_delta, self.q0, self.F)
+
 
 
         
