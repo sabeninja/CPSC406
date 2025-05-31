@@ -19,7 +19,7 @@ class NFA:
         return bool(current_states & self.F)
 
     def to_DFA(self):
-        from DFA import DFA
+        from dfa import DFA
         from collections import deque
 
         initial_state = frozenset({self.q0})

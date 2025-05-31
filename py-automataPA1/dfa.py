@@ -30,7 +30,7 @@ class DFA :
         return DFA(self.Q, self.Sigma, self.delta, self.q0, new_F)
     
     def to_NFA(self):
-        from NFA import NFA
+        from nfa import NFA
         nfa_delta = {}
         for (state, symbol), dest in self.delta.items():
             nfa_delta[(state, symbol)] = {dest}
